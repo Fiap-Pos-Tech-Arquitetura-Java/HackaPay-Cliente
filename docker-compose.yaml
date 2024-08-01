@@ -1,0 +1,32 @@
+services:
+  hackapay-cliente:
+    image: 'hackapay-cliente-docker-image'
+    build:
+      context: .
+    container_name: 'hackapay-cliente-docker-container'
+    depends_on:
+      - db
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/hackapay-cliente-db
+      - SPRING_DATASOURCE_USERNAME=hackaPay
+      - SPRING_DATASOURCE_PASSWORD=hackaPayCliente
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
+    networks:
+      - hackapay-network
+  db:
+    image: postgres:latest
+    container_name: hackapay-cliente-db
+    command: -p 5432
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=hackaPay
+      - POSTGRES_PASSWORD=hackaPayCliente
+      - POSTGRES_DB=hackapay-cliente-db
+    networks:
+      - hackapay-network
+networks:
+  hackapay-network:
+    external: true
