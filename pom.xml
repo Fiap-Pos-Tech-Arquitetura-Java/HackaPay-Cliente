@@ -12,7 +12,7 @@
 	<artifactId>HackaPay-Cliente</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>HackaPay-Cliente</name>
-	<description>microservico de controle de cartoes</description>
+	<description>microservico de controle de clientes</description>
 	<url/>
 	<licenses>
 		<license/>
