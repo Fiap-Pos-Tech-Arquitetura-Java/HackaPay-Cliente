@@ -1,2 +1,2 @@
 docker pull postgres:latest
-docker run --name hachapay-standalone-cliente-db -p 5432:5432 -e PGPORT=5432 -e POSTGRES_USER=hackaPay -e POSTGRES_PASSWORD=hackaPayCliente -e POSTGRES_DB=hachapay-cliente-db -d postgres
+docker run --name hackapay-standalone-cliente-db -p 5432:5432 -e PGPORT=5432 -e POSTGRES_USER=hackaPay -e POSTGRES_PASSWORD=hackaPayCliente -e POSTGRES_DB=hackapay-cliente-db -d postgres

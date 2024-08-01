@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.fiap.postech</groupId>
-	<artifactId>GoodBuy-Payment</artifactId>
+	<artifactId>HackaPay-Cliente</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>GoodBuy-Payment</name>
-	<description>Demo project for Spring Boot</description>
+	<name>HackaPay-Cliente</name>
+	<description>microservico de controle de cartoes</description>
 	<url/>
 	<licenses>
 		<license/>
