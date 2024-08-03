@@ -60,6 +60,17 @@ public class ClienteController {
         }
     }
 
+    @Operation(summary = "lista um cliente por seu cpf")
+    @GetMapping("/findByCpf/{cpf}")
+    public ResponseEntity<?> findByCpf(@PathVariable String cpf) {
+        try {
+            Cliente cliente = clienteService.findByCpf(cpf);
+            return ResponseEntity.ok(cliente);
+        } catch (IllegalArgumentException exception) {
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @Operation(summary = "altera um cliente por seu id")
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable UUID id, @Valid @RequestBody Cliente clienteDTO) {

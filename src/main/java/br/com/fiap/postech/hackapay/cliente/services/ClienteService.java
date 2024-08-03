@@ -16,4 +16,6 @@ public interface ClienteService {
     Cliente update(UUID id, Cliente cliente);
 
     void delete(UUID id);
+
+    Cliente findByCpf(String cpf);
 }

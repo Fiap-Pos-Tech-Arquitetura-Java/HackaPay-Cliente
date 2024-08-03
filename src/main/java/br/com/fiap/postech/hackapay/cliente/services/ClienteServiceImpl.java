@@ -43,6 +43,12 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
+    public Cliente findByCpf(String cpf) {
+        return clienteRepository.findByCpf(cpf)
+                .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado com o cpf: " + cpf));
+    }
+
+    @Override
     public Cliente update(UUID id, Cliente clienteParam) {
         Cliente cliente = findById(id);
         if (StringUtils.isNotEmpty(clienteParam.getNome())) {
