@@ -32,7 +32,7 @@ import static org.mockito.Mockito.when;
 @ActiveProfiles("test")
 public class ClienteControllerIT {
 
-    public static final String CLIENTE = "/hackapay/cliente";
+    public static final String CLIENTE = "/api/cliente";
     @LocalServerPort
     private int port;
 
