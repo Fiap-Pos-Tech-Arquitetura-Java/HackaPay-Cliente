@@ -127,6 +127,30 @@ class ClienteServiceTest {
             );
             verify(clienteRepository, times(1)).findAll(any(Example.class), any(Pageable.class));
         }
+        @Test
+        void devePermitirBuscarClientePorCpf() {
+            // Arrange
+            var cliente = ClienteHelper.getCliente(true);
+            when(clienteRepository.findByCpf(cliente.getCpf())).thenReturn(Optional.of(cliente));
+            // Act
+            var clienteObtido = clienteService.findByCpf(cliente.getCpf());
+            // Assert
+            assertThat(clienteObtido).isEqualTo(cliente);
+            verify(clienteRepository, times(1)).findByCpf(anyString());
+        }
+
+        @Test
+        void deveGerarExcecao_QuandoBuscarClientePorCpf_CpfNaoExiste() {
+            // Arrange
+            var cliente = ClienteHelper.getCliente(true);
+            when(clienteRepository.findByCpf(cliente.getCpf())).thenReturn(Optional.empty());
+            // Act
+            assertThatThrownBy(() -> clienteService.findByCpf(cliente.getCpf()))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("Cliente não encontrado com o cpf: " + cliente.getCpf());
+            // Assert
+            verify(clienteRepository, times(1)).findByCpf(anyString());
+        }
     }
 
     @Nested

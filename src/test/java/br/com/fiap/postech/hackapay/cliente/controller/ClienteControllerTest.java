@@ -138,6 +138,29 @@ class ClienteControllerTest {
             // Assert
             verify(clienteService, times(1)).findAll(pageable, criterioCliente);
         }
+
+        @Test
+        void devePermitirBuscarClientePorCpf() throws Exception {
+            // Arrange
+            var cliente = ClienteHelper.getCliente(true);
+            when(clienteService.findByCpf(anyString())).thenReturn(cliente);
+            // Act
+            mockMvc.perform(get("/cliente/findByCpf/{Cpf}", cliente.getCpf()))
+                    .andExpect(status().isOk());
+            // Assert
+            verify(clienteService, times(1)).findByCpf(anyString());
+        }
+        @Test
+        void deveGerarExcecao_QuandoBuscarClientePorCpf_CpfNaoExiste() throws Exception {
+            // Arrange
+            var cliente = ClienteHelper.getCliente(true);
+            when(clienteService.findByCpf(cliente.getCpf())).thenThrow(IllegalArgumentException.class);
+            // Act
+            mockMvc.perform(get("/cliente/findByCpf/{Cpf}", cliente.getCpf()))
+                    .andExpect(status().isBadRequest());
+            // Assert
+            verify(clienteService, times(1)).findByCpf(cliente.getCpf());
+        }
     }
 
     @Nested
